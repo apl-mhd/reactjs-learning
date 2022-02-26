@@ -2,29 +2,43 @@ import React, { useState } from 'react';
 import style from './form.module.css';
 
 export default function Form() {
-  const [name, setName] = useState('');
-  const [password, setPassword] = useState('');
-  const [email, setEmail] = useState('');
+  // const [name, setName] = useState('');
+  // const [password, setPassword] = useState('');
+  // const [email, setEmail] = useState('');
 
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-  const handlePassChange = (e) => {
-    setPassword(e.target.value);
+  const [user, setUser] = useState({ name: '', email: '', password: '' });
+  const { name, email, password } = user;
+
+  // const handleNameChange = (e) => {
+  //   setUser({ name: e.target.value, email, password });
+  // };
+  // const handleEmailChange = (e) => {
+  //   setUser({ name, email: e.target.value, password });
+  // };
+  // const handlePassChange = (e) => {
+  //   setUser({ name, email, password: e.target.value });
+  // };
+
+  const handleChange = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
+    // const fieldName = e.target.name;
+
+    // if (fieldName === 'name') {
+    //   setUser({ name: e.target.value, email, password });
+    // }
+
+    // if (fieldName === 'email') {
+    //   setUser({ name, email: e.target.value, password });
+    // }
+    // if (fieldName === 'password') {
+    //   setUser({ name, email, password: e.target.value });
+    // }
   };
   const handleSubmit = (e) => {
     console.log('form submited');
 
-    let userInfo = {
-      name,
-      email,
-      password,
-    };
     console.log(name, email, password);
-    console.log(userInfo);
+    console.log(user);
     e.preventDefault();
   };
   return (
@@ -38,7 +52,7 @@ export default function Form() {
             name='name'
             id='name'
             value={name}
-            onChange={handleNameChange}
+            onChange={handleChange}
             required
           />
         </div>
@@ -46,7 +60,7 @@ export default function Form() {
         <div className={style.formGroup}>
           <label htmlFor='email'>Email: </label>
           <input
-            onChange={handleEmailChange}
+            onChange={handleChange}
             type='email'
             name='email'
             id='email'
@@ -58,7 +72,7 @@ export default function Form() {
         <div className={style.formGroup}>
           <label htmlFor='password'>Password: </label>
           <input
-            onChange={handlePassChange}
+            onChange={handleChange}
             type='password'
             name='password'
             id='password'

@@ -1,13 +1,19 @@
 import React from 'react';
 
-import HookUsestate from './hook-usestate/index1.js';
-import HookUsestate2 from './hook-usestate/index2.js';
-import Form from './Form/form.js';
+import Child from './state-lifting/child';
+// import Home from './state-lifting/home';
+import Lchild from './lifting/l-child';
+import Lhome from './lifting/l-home';
 
 export default function App() {
+  const data = 'I am from parent';
+
+  const handleChildData = (childData) => {
+    console.log(childData);
+  };
   return (
     <div>
-      <Form />
+      <Lhome />
     </div>
   );
 }
